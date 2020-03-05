@@ -1,3 +1,5 @@
+image:https://travis-ci.com/hei1233212000/news-management-system.svg?branch=master["Build Status", link="https://travis-ci.com/hei1233212000/news-management-system"]
+
 == Requirements:
 
 *The application should have following requirements:*
