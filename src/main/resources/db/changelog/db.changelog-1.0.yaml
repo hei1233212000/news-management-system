@@ -1,0 +1,130 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1
+      author: harry
+      changes:
+        - createTable:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: ID
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: NAME
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: PARENT_ID
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: NEWS_ID
+                  type: bigint
+                  constraints:
+                    nullable: true
+#              - column:
+#                  name: CREATED_TIMESTAMP
+#                  type: datetime
+#                  constraints:
+#                    nullable: false
+#              - column:
+#                  name: VERSION
+#                  type: bigint
+#                  constraints:
+#                    nullable: false
+#              - column:
+#                  name: UPDATED_TIMESTAMP
+#                  type: datetime
+#                  constraints:
+#                    nullable: false
+        - createIndex:
+            columns:
+              - column:
+                  name: NAME
+            indexName: IDX_CATEGORY_NAME
+            tableName: CATEGORY
+            unique: true
+        - addForeignKeyConstraint:
+            baseColumnNames: PARENT_ID
+            baseTableName: CATEGORY
+            constraintName: FK_CATEGORY_PARENT
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: ID
+            referencedTableName: CATEGORY
+            validate: true
+        - createTable:
+            tableName: NEWS
+            columns:
+              - column:
+                  name: ID
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: CAPTION
+                  type: varchar(80)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: SLUG
+                  type: varchar(80)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CONTENT
+                  type: clob
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CREATED_TIMESTAMP
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: VERSION
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: UPDATED_TIMESTAMP
+                  type: datetime
+                  constraints:
+                    nullable: false
+        - createIndex:
+            columns:
+              - column:
+                  name: CAPTION
+            indexName: IDX_NEWS_CAPTION
+            tableName: NEWS
+            unique: true
+        - createIndex:
+            columns:
+              - column:
+                  name: SLUG
+            indexName: IDX_NEWS_SLUG
+            tableName: NEWS
+            unique: true
+        - createIndex:
+            columns:
+              - column:
+                  name: CREATED_TIMESTAMP
+            indexName: IDX_NEWS_CREATED_TIMESTAMP
+            tableName: NEWS
+        - addForeignKeyConstraint:
+            baseColumnNames: NEWS_ID
+            baseTableName: CATEGORY
+            constraintName: FK_CATEGORY_NEWS
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: ID
+            referencedTableName: NEWS
+            validate: true

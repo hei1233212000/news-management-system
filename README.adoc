@@ -1,0 +1,45 @@
+== Requirements:
+
+*The application should have following requirements:*
+
+. A News has caption, category, sub-category, content information
+. The system supported to create News, update the content and browse the News records
+. There are some validation rules when creating a News, eg. the length of the caption should not be longer than 80 characters
+. Additional features supported which not mentioned above will be treated as bonus
+
+=== How to build the application?
+On Windows
+[source]
+----
+gradlew.bat clean build
+----
+
+On *nix
+[source]
+----
+./gradlew clean build
+----
+
+=== How to run the application?
+On Windows
+[source]
+----
+gradlew.bat bootRun
+----
+
+On *nix
+[source]
+----
+./gradlew bootRun
+----
+
+=== Access and play around the APIs
+Go to http://localhost:8080/swagger-ui.html
+
+==== Improvements
+* add update feature to category
+* add validation to category related operation
+* add back unit tests for category (news features are created by ATDD and TDD but category features just ATDD for saving time)
+* pagination
+* security
+* audit history
