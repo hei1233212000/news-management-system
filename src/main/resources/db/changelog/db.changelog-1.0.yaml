@@ -23,11 +23,6 @@ databaseChangeLog:
                   type: bigint
                   constraints:
                     nullable: true
-              - column:
-                  name: NEWS_ID
-                  type: bigint
-                  constraints:
-                    nullable: true
 #              - column:
 #                  name: CREATED_TIMESTAMP
 #                  type: datetime
@@ -119,12 +114,36 @@ databaseChangeLog:
                   name: CREATED_TIMESTAMP
             indexName: IDX_NEWS_CREATED_TIMESTAMP
             tableName: NEWS
+        - createTable:
+            tableName: NEWS_CATEGORY
+            columns:
+              - column:
+                  name: NEWS_ID
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: CATEGORY_ID
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
         - addForeignKeyConstraint:
             baseColumnNames: NEWS_ID
-            baseTableName: CATEGORY
-            constraintName: FK_CATEGORY_NEWS
+            baseTableName: NEWS_CATEGORY
+            constraintName: FK_NEWS_CATEGORY_NEWS
             onDelete: NO ACTION
             onUpdate: NO ACTION
             referencedColumnNames: ID
             referencedTableName: NEWS
+            validate: true
+        - addForeignKeyConstraint:
+            baseColumnNames: CATEGORY_ID
+            baseTableName: NEWS_CATEGORY
+            constraintName: FK_NEWS_CATEGORY_CATEGORY
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: ID
+            referencedTableName: CATEGORY
             validate: true

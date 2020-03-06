@@ -29,6 +29,11 @@ data class News(
         @Column(name = "UPDATED_TIMESTAMP", nullable = false)
         var updatedTime: LocalDateTime? = null,
 
-        @OneToMany(mappedBy = "news")
+        @ManyToMany
+        @JoinTable(
+                name = "NEWS_CATEGORY",
+                joinColumns = [JoinColumn(name = "NEWS_ID")],
+                inverseJoinColumns = [JoinColumn(name = "CATEGORY_ID")]
+        )
         val categories: MutableList<Category> = mutableListOf()
 )

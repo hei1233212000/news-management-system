@@ -39,7 +39,7 @@ On *nix
 Go to http://localhost:8080/swagger-ui.html
 
 ==== Improvements
-* add update feature to category
+* add update/delete feature to category
 * add validation to category related operation
 * add back unit tests for category (news features are created by ATDD and TDD but category features just ATDD for saving time)
 * pagination

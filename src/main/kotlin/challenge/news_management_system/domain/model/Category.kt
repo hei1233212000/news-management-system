@@ -20,7 +20,6 @@ data class Category(
         @JoinColumn(name = "PARENT_ID")
         var parent: Category? = null
 
-        @ManyToOne
-        @JoinColumn(name = "NEWS_ID")
-        var news: News? = null
+        @ManyToMany(mappedBy = "categories")
+        var listOfNews: MutableList<News> = mutableListOf()
 }

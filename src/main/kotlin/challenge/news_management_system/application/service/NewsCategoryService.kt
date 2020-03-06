@@ -12,11 +12,9 @@ class NewsCategoryService(
         private val categoryRepository: CategoryRepository
 ) {
     fun assignCategories(slug: String, categoryNames: List<String>) {
-        val news = newsRepository.findBySlug(slug)
+        val news = newsRepository.findBySlug(slug)!!
         val categories = categoryRepository.findByNameIn(categoryNames.toSet())
-        categories.forEach {
-            it.news = news
-        }
+        news.categories.addAll(categories)
         categoryRepository.saveAll(categories)
     }
 }
